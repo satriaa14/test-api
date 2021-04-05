@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "7748b2c3-4a50-4f1b-a89c-e20c5dcfe923",
+		"name": "Mahasiswa API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test.api\",\n    \"password\":\"02062021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Mahasiswa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTc2MjAwMDgsImlzcyI6Ik1haGFzaXN3YSBTZXJ2aWNlIiwibmFtZSI6IlRlc3QgQVBJIC0gRGlhaCIsImVtYWlsIjoidGVzdC5lbWFpbEBnbWFpbC5jb20iLCJ1c2VyIjoidGVzdC5hcGkifQ.EWLP2W6G0rJz_i2cSwpblrvE9PNhZsWQVzF5EPxwnhg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/v1/mahasiswa/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"mahasiswa",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Mahasiswa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTc2MjAwMDgsImlzcyI6Ik1haGFzaXN3YSBTZXJ2aWNlIiwibmFtZSI6IlRlc3QgQVBJIC0gRGlhaCIsImVtYWlsIjoidGVzdC5lbWFpbEBnbWFpbC5jb20iLCJ1c2VyIjoidGVzdC5hcGkifQ.EWLP2W6G0rJz_i2cSwpblrvE9PNhZsWQVzF5EPxwnhg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nim\" : \"10113360\",\n    \"name\" : \"Satria Agung\",\n    \"class\" : \"4KA40\",\n    \"phone\" : \"087878805571\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/mahasiswa/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"mahasiswa",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

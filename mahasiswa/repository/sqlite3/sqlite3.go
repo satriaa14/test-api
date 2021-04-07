@@ -15,8 +15,6 @@ type sqLiteReadWriter struct {
 }
 
 const (
-	// Queries
-
 	// Create table if not exists
 	sqlTable = `CREATE TABLE IF NOT EXISTS mahasiswa(
 					nim TEXT NOT NULL PRIMARY KEY,
@@ -29,6 +27,7 @@ const (
 					updated_by TEXT
 				);`
 
+	// Query operation
 	insertMahasiswa = `INSERT INTO mahasiswa(
 					nim,
 					name,
@@ -40,6 +39,10 @@ const (
 				) VALUES(?,?,?,?,?,?,?,?);`
 
 	getAllMahasiswa = `SELECT * FROM mahasiswa;`
+
+	getMahasiswaByID = `SELECT * FROM mahasiswa WHERE nim = ?;`
+
+	deleteMahasiswaByID = `DELETE FROM mahasiswa WHERE nim = ?;`
 )
 
 // NewSQLiteReadWriter is function creating connection with sql lite database.

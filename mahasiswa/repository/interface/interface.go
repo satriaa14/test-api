@@ -11,7 +11,7 @@ type ReadWriter interface {
 	io.Closer
 	CreateMahasiswa(req model.Mahasiswa) error
 	GetMahasiswa() ([]model.Mahasiswa, error)
-	GetMahasiswaByID() error
-	DeleteMahasiswa() error
+	GetMahasiswaByID(req string) (model.Mahasiswa, error)
+	DeleteMahasiswa(req string) error
 	UpdateMahasiswa() error
 }

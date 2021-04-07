@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/satriaa14/test-api/mahasiswa/middleware"
 	"github.com/satriaa14/test-api/mahasiswa/model"
@@ -15,14 +14,14 @@ import (
 	"github.com/satriaa14/test-api/mahasiswa/util/setup"
 )
 
-func (rw *Service) CreateMahasiswa() http.HandlerFunc {
+func (rw *Service) GetMahasiswaByID() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		log.Println(fmt.Sprintf("%+v", logging.LogRequestClient(w, r)))
 
 		setup.SetupCorsResponse(&w, r)
 
-		if pattern.DataURL(r.URL.Path)[4] != create {
+		if pattern.DataURL(r.URL.Path)[4] != getall {
 			http.Error(w, "Not Found", http.StatusNotFound)
 			return
 		}
@@ -34,7 +33,7 @@ func (rw *Service) CreateMahasiswa() http.HandlerFunc {
 			return
 		}
 
-		if r.Method != http.MethodPost {
+		if r.Method != http.MethodGet {
 			http.Error(w, "Method Not allowed", http.StatusMethodNotAllowed)
 			return
 		}
@@ -52,17 +51,24 @@ func (rw *Service) CreateMahasiswa() http.HandlerFunc {
 			return
 		}
 
-		request.CreatedAt = time.Now()
-		request.CreatedBy = "User"
-		request.UpdatedAt = time.Now()
-		request.UpdatedBy = "User"
+		if request.NIM == "" || len(request.NIM) == 0 {
+			http.Error(w, "Please Fill NIM", http.StatusBadRequest)
+			return
+		}
 
-		err = rw.repo.SQLiteReadWriter.CreateMahasiswa(request)
+		// TODO
+		resp, err := rw.repo.SQLiteReadWriter.GetMahasiswaByID(request.NIM)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusForbidden)
 			return
 		}
 
-		w.Write([]byte("Create Success"))
+		data, err := json.Marshal(resp)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusForbidden)
+			return
+		}
+
+		w.Write(data)
 	}
 }

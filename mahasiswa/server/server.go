@@ -40,7 +40,7 @@ func Run() {
 	// Handlers
 	http.HandleFunc("/", mahasiswaService.Alive())
 	http.HandleFunc("/login", mahasiswaService.Login())
-	// http.HandleFunc(api+mahasiswa+root+get, mahasiswaHandler())
+	http.HandleFunc(api+mahasiswa+root+get, mahasiswaService.GetMahasiswaByID())
 	http.HandleFunc(api+mahasiswa+root+getall, mahasiswaService.GetMahasiswa())
 	http.HandleFunc(api+mahasiswa+root+create, mahasiswaService.CreateMahasiswa())
 	// http.HandleFunc(api+mahasiswa+root+update, mahasiswaHandler())

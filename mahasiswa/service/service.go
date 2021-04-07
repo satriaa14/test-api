@@ -1,6 +1,8 @@
 package service
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type Operate interface {
 	PreService
@@ -15,4 +17,5 @@ type PreService interface {
 type MahasiswaService interface {
 	GetMahasiswa() http.HandlerFunc
 	CreateMahasiswa() http.HandlerFunc
+	GetMahasiswaByID() http.HandlerFunc
 }

@@ -16,6 +16,7 @@ type PreService interface {
 
 type MahasiswaService interface {
 	GetMahasiswa() http.HandlerFunc
+	DeleteMahasiswa() http.HandlerFunc
 	CreateMahasiswa() http.HandlerFunc
 	GetMahasiswaByID() http.HandlerFunc
 }

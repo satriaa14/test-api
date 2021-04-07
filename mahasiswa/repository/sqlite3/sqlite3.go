@@ -43,6 +43,8 @@ const (
 	getMahasiswaByID = `SELECT * FROM mahasiswa WHERE nim = ?;`
 
 	deleteMahasiswaByID = `DELETE FROM mahasiswa WHERE nim = ?;`
+
+	updateMahasiswaByID = `UPDATE mahasiswa SET(%s) WHERE nim = ?;`
 )
 
 // NewSQLiteReadWriter is function creating connection with sql lite database.

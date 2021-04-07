@@ -40,11 +40,11 @@ func Run() {
 	// Handlers
 	http.HandleFunc("/", mahasiswaService.Alive())
 	http.HandleFunc("/login", mahasiswaService.Login())
-	http.HandleFunc(api+mahasiswa+root+get, mahasiswaService.GetMahasiswaByID())
 	http.HandleFunc(api+mahasiswa+root+getall, mahasiswaService.GetMahasiswa())
 	http.HandleFunc(api+mahasiswa+root+create, mahasiswaService.CreateMahasiswa())
+	http.HandleFunc(api+mahasiswa+root+get+root, mahasiswaService.GetMahasiswaByID())
+	http.HandleFunc(api+mahasiswa+root+delete+root, mahasiswaService.DeleteMahasiswa())
 	// http.HandleFunc(api+mahasiswa+root+update, mahasiswaHandler())
-	// http.HandleFunc(api+mahasiswa+root+delete, mahasiswaHandler())
 
 	log.Println("Start server")
 	http.ListenAndServe(":9000", nil)

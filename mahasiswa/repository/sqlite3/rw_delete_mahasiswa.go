@@ -1,12 +1,20 @@
 package sqlite3
 
-import "database/sql"
+import "fmt"
 
 func (rw *sqLiteReadWriter) DeleteMahasiswa(req string) error {
 
-	_, err := rw.sqLite.Exec(getMahasiswaByID, req)
-	if err != nil && err != sql.ErrNoRows {
+	result, err := rw.sqLite.Exec(deleteMahasiswaByID, req)
+	if err != nil {
 		return err
+	}
+	affected, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if affected == 0 {
+		return fmt.Errorf("No rows deleted")
 	}
 
 	return nil

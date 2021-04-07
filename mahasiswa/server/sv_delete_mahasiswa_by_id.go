@@ -1,7 +1,6 @@
 package server
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -12,7 +11,7 @@ import (
 	"github.com/satriaa14/test-api/mahasiswa/util/setup"
 )
 
-func (rw *Service) GetMahasiswaByID() http.HandlerFunc {
+func (rw *Service) DeleteMahasiswa() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		var request string
@@ -23,7 +22,7 @@ func (rw *Service) GetMahasiswaByID() http.HandlerFunc {
 
 		setup.SetupCorsResponse(&w, r)
 
-		if pattern[4] != get {
+		if pattern[4] != delete {
 			http.Error(w, "Not Found", http.StatusNotFound)
 			return
 		}
@@ -35,7 +34,7 @@ func (rw *Service) GetMahasiswaByID() http.HandlerFunc {
 			return
 		}
 
-		if r.Method != http.MethodGet {
+		if r.Method != http.MethodDelete {
 			http.Error(w, "Method Not allowed", http.StatusMethodNotAllowed)
 			return
 		}
@@ -53,18 +52,12 @@ func (rw *Service) GetMahasiswaByID() http.HandlerFunc {
 		request = pattern[5]
 
 		// TODO
-		resp, err := rw.repo.SQLiteReadWriter.GetMahasiswaByID(request)
+		err = rw.repo.SQLiteReadWriter.DeleteMahasiswa(request)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusForbidden)
 			return
 		}
 
-		data, err := json.Marshal(resp)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusForbidden)
-			return
-		}
-
-		w.Write(data)
+		w.Write([]byte("Delete Success"))
 	}
 }

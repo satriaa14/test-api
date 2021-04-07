@@ -15,7 +15,7 @@ func (rw *Service) Alive() http.HandlerFunc {
 		log.Println(fmt.Sprintf("%+v", logging.LogRequestClient(w, r)))
 
 		if r.URL.Path == root && r.Method == http.MethodGet {
-			w.Write([]byte("Hi, Diah. I'm Alive"))
+			w.Write([]byte("Hi, Diah. I'm Alive :)"))
 			return
 		}
 		http.Error(w, "Not Found", http.StatusNotFound)

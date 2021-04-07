@@ -18,6 +18,12 @@ const (
 	create    string = "create"
 	update    string = "update"
 	delete    string = "delete"
+
+	apigetall  string = api + mahasiswa + root + getall
+	apicreate  string = api + mahasiswa + root + create
+	apigetbyid string = api + mahasiswa + root + get + root
+	apidelete  string = api + mahasiswa + root + delete + root
+	apiupdate  string = api + mahasiswa + root + update + root
 )
 
 type Service struct {
@@ -40,11 +46,11 @@ func Run() {
 	// Handlers
 	http.HandleFunc("/", mahasiswaService.Alive())
 	http.HandleFunc("/login", mahasiswaService.Login())
-	http.HandleFunc(api+mahasiswa+root+getall, mahasiswaService.GetMahasiswa())
-	http.HandleFunc(api+mahasiswa+root+create, mahasiswaService.CreateMahasiswa())
-	http.HandleFunc(api+mahasiswa+root+get+root, mahasiswaService.GetMahasiswaByID())
-	http.HandleFunc(api+mahasiswa+root+delete+root, mahasiswaService.DeleteMahasiswa())
-	// http.HandleFunc(api+mahasiswa+root+update, mahasiswaHandler())
+	http.HandleFunc(apigetall, mahasiswaService.GetMahasiswa())
+	http.HandleFunc(apidelete, mahasiswaService.DeleteMahasiswa())
+	http.HandleFunc(apicreate, mahasiswaService.CreateMahasiswa())
+	http.HandleFunc(apiupdate, mahasiswaService.UpdateMahasiswa())
+	http.HandleFunc(apigetbyid, mahasiswaService.GetMahasiswaByID())
 
 	log.Println("Start server")
 	http.ListenAndServe(":9000", nil)

@@ -18,5 +18,6 @@ type MahasiswaService interface {
 	GetMahasiswa() http.HandlerFunc
 	DeleteMahasiswa() http.HandlerFunc
 	CreateMahasiswa() http.HandlerFunc
+	UpdateMahasiswa() http.HandlerFunc
 	GetMahasiswaByID() http.HandlerFunc
 }

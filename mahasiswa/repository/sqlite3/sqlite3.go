@@ -6,7 +6,7 @@ import (
 
 	_interface "github.com/satriaa14/test-api/mahasiswa/repository/interface"
 
-	_ "github.com/satriaa14/test-api/mahasiswa/src/github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 // dbReadWriter is a struct having the sql db parameter

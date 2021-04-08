@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -51,7 +50,6 @@ func Run() {
 
 	mahasiswaService := NewMahasiswaService(*newRepo)
 
-	fmt.Println(port)
 	if port == "" {
 		port = defaultport
 	}

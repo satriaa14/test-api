@@ -1,9 +1,12 @@
 package server
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/satriaa14/test-api/mahasiswa/repository"
 	"github.com/satriaa14/test-api/mahasiswa/service"
 )
@@ -36,12 +39,17 @@ func NewMahasiswaService(repo repository.Repo) service.Operate {
 
 func Run() {
 
+	godotenv.Load()
+	port := os.Getenv("PORT")
+
 	newRepo, err := repository.NewMahasiswaRepo()
 	if err != nil {
 		panic(err)
 	}
 
 	mahasiswaService := NewMahasiswaService(*newRepo)
+
+	fmt.Println(port)
 
 	// Handlers
 	http.HandleFunc("/", mahasiswaService.Alive())
@@ -53,5 +61,5 @@ func Run() {
 	http.HandleFunc(apigetbyid, mahasiswaService.GetMahasiswaByID())
 
 	log.Println("Start server")
-	http.ListenAndServe(":9000", nil)
+	http.ListenAndServe(":"+port, nil)
 }

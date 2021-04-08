@@ -77,6 +77,6 @@ func (rw *Service) UpdateMahasiswa() http.HandlerFunc {
 			return
 		}
 
-		w.Write([]byte("Create Success"))
+		w.Write([]byte("Update Success"))
 	}
 }

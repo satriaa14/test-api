@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/satriaa14/test-api/mahasiswa/src/github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"
 )
 

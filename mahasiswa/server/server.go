@@ -27,6 +27,8 @@ const (
 	apigetbyid string = api + mahasiswa + root + get + root
 	apidelete  string = api + mahasiswa + root + delete + root
 	apiupdate  string = api + mahasiswa + root + update + root
+
+	defaultport string = "9000"
 )
 
 type Service struct {
@@ -51,7 +53,7 @@ func Run() {
 
 	fmt.Println(port)
 	if port == "" {
-		port = "3000"
+		port = defaultport
 	}
 
 	// Handlers
@@ -63,6 +65,6 @@ func Run() {
 	http.HandleFunc(apiupdate, mahasiswaService.UpdateMahasiswa())
 	http.HandleFunc(apigetbyid, mahasiswaService.GetMahasiswaByID())
 
-	log.Println("Start server")
+	log.Println("Start server port at :", port)
 	http.ListenAndServe(":"+port, nil)
 }

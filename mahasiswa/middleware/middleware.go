@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/satriaa14/test-api/mahasiswa/src/github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go"
 
 	"github.com/satriaa14/test-api/mahasiswa/operation"
 )

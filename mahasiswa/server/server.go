@@ -50,6 +50,9 @@ func Run() {
 	mahasiswaService := NewMahasiswaService(*newRepo)
 
 	fmt.Println(port)
+	if port == "" {
+		port = "3000"
+	}
 
 	// Handlers
 	http.HandleFunc("/", mahasiswaService.Alive())

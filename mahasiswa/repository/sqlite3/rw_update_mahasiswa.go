@@ -13,7 +13,7 @@ func (rw *sqLiteReadWriter) UpdateMahasiswa(req model.Mahasiswa) error {
 
 	args = append(args, req.NIM)
 
-	_, err := rw.sqLite.Exec(query, args)
+	_, err := rw.sqLite.Exec(query, args...)
 	if err != nil {
 		return err
 	}

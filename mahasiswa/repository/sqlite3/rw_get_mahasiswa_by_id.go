@@ -2,6 +2,7 @@ package sqlite3
 
 import (
 	"database/sql"
+	"fmt"
 
 	"github.com/satriaa14/test-api/mahasiswa/model"
 )
@@ -19,7 +20,10 @@ func (rw *sqLiteReadWriter) GetMahasiswaByID(req string) (model.Mahasiswa, error
 		&resp.UpdatedAt,
 		&resp.UpdatedBy,
 	)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return resp, fmt.Errorf("mahasiswa with NIM %s is not exist", req)
+		}
 		return resp, err
 	}
 

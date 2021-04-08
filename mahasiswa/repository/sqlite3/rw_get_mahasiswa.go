@@ -26,7 +26,10 @@ func (rw *sqLiteReadWriter) GetMahasiswa() ([]model.Mahasiswa, error) {
 			&data.UpdatedAt,
 			&data.UpdatedBy,
 		)
-		if err != nil && err != sql.ErrNoRows {
+		if err != nil {
+			if err != sql.ErrNoRows {
+				return resp, nil
+			}
 			return resp, err
 		}
 		resp = append(resp, data)

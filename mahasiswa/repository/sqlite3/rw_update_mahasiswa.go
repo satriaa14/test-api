@@ -1,6 +1,7 @@
 package sqlite3
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -13,9 +14,18 @@ func (rw *sqLiteReadWriter) UpdateMahasiswa(req model.Mahasiswa) error {
 
 	args = append(args, req.NIM)
 
-	_, err := rw.sqLite.Exec(query, args...)
+	result, err := rw.sqLite.Exec(query, args...)
 	if err != nil {
 		return err
+	}
+
+	affected, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if affected == 0 {
+		return errors.New("No rows updated")
 	}
 	return nil
 }

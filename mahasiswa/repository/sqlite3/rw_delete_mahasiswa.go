@@ -1,6 +1,6 @@
 package sqlite3
 
-import "fmt"
+import "errors"
 
 func (rw *sqLiteReadWriter) DeleteMahasiswa(req string) error {
 
@@ -8,13 +8,14 @@ func (rw *sqLiteReadWriter) DeleteMahasiswa(req string) error {
 	if err != nil {
 		return err
 	}
+
 	affected, err := result.RowsAffected()
 	if err != nil {
 		return err
 	}
 
 	if affected == 0 {
-		return fmt.Errorf("No rows deleted")
+		return errors.New("No rows deleted")
 	}
 
 	return nil
